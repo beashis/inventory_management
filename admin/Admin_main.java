@@ -1,6 +1,6 @@
 package admin;
 
-public class admin_main {
+public class Admin_main {
     public void createProduct(int id, String name, int count)
     {
         String query="insert into inventory(id,name,count) values ("+id+","+name+","+count+")";

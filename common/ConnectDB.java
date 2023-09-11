@@ -8,7 +8,7 @@ public class ConnectDB {
     private static final String password = "Japan@123";
     static public Connection conn = null;
     static public Statement st = null;
-    void connectToDB() throws SQLException, ClassNotFoundException {
+    public void connectToDB() throws SQLException, ClassNotFoundException {
         String driver="oracle.jdbc.OracleDriver";
         String jdbc_url="jdbc:oracle:thin:@localhost:1521/XE";
         String user="system";
@@ -26,5 +26,28 @@ public class ConnectDB {
         st.close();
         return rs;
     }
+
+
+
+    public ResultSet getProductTable() throws SQLException {
+        CallableStatement statement = conn.prepareCall("{Product_DB()}");
+        return statement.executeQuery();
+    }
+
+    public ResultSet getCategory() throws SQLException{
+        CallableStatement statement = conn.prepareCall("{Category_DB()}");
+        return statement.executeQuery();
+    }
+
+    public ResultSet insertNewProduct(String productName) throws SQLException{
+        CallableStatement statement = conn.prepareCall("{insertNewProduct()}");
+        return statement.executeQuery();
+    }
+
+    public ResultSet updateProduct(int productCount) throws SQLException {
+        CallableStatement statement = conn.prepareCall("{updateProduct()}");
+        return statement.executeQuery();
+    }
+
 
 }

@@ -2,15 +2,17 @@ package admin;
 
 import common.ConnectDB;
 import common.MenuFormat;
+import common.UserVariables;
 
 import java.sql.ResultSet;
 import java.util.Scanner;
 
 public class Admin_main {
 
+    Scanner sc = UserVariables.scanner;
     public void displayAdminMenu(){
-        Scanner sc = new Scanner(System.in);
-        String[] adminOptions = {"createProduct" , "addProduct" , "deleteProduct"};
+
+        String[] adminOptions = {"createProduct" , "addProduct" , "deleteProduct", "logout"};
 
         while(true) {
 
@@ -18,7 +20,7 @@ public class Admin_main {
                 int input = 0;
                 input = MenuFormat.menuFormat(adminOptions);
 
-                if (input >= 4) {
+                if (input == 4) {
                     break;
                 }
 

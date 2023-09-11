@@ -76,7 +76,6 @@ public class Register{
 
             // TODO: 9/11/2023 Update the details to the database
 
-            sc.close();
         }
 
     }

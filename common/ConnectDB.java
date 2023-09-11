@@ -1,18 +1,14 @@
 package common;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
+import java.sql.*;
 
 
 public class ConnectDB {
     /**change as for your system **/
     private static final String password = "Japan@123";
-    public Connection conn = null;
-    public Statement st = null;
-    public void connectToDB() throws SQLException, ClassNotFoundException {
+    static public Connection conn = null;
+    static public Statement st = null;
+    void connectToDB() throws SQLException, ClassNotFoundException {
         String driver="oracle.jdbc.OracleDriver";
         String jdbc_url="jdbc:oracle:thin:@localhost:1521/XE";
         String user="system";
@@ -25,10 +21,10 @@ public class ConnectDB {
 
     }
 
-    public void queryExecute(String query) throws SQLException {
-        st.executeUpdate(query);
+    public static ResultSet queryExecute(String query) throws SQLException {
+        ResultSet rs = st.executeQuery(query);
         st.close();
+        return rs;
     }
-
 
 }

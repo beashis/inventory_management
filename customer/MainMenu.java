@@ -27,6 +27,7 @@ public class MainMenu {
 
                     case 1:
                         System.out.println("Option 1 selected");
+                        ShowCart.showCart();
                         break;
                     case 2:
                         System.out.println("Option 2 selected");

@@ -7,12 +7,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import common.models.*;
 
 public class BuyNow {
 
+    static int uid = UserVariables.getUid();
     public static void displayData() throws SQLException{
         ResultSet rs = ConnectDB.queryExecute("p_buy_now(" + uid + ")");
         //TODO: display total amount
+    }
+
+    public static void updateInventory(){
+
     }
 
     public static List<List<String>> checkOrder() throws SQLException{
@@ -22,7 +28,6 @@ public class BuyNow {
         //TODO: return output as list of products
         return arr;
     }
-    static int uid = UserVariables.getUid();
     public static void showMenu(){
 
         try {
@@ -33,7 +38,6 @@ public class BuyNow {
                 for(List<String> i: arr){
                     System.out.println(i.get(0) + ": " + i.get(1));
                 }
-
                 return;
             }
 
@@ -43,6 +47,7 @@ public class BuyNow {
 
             if(input.equalsIgnoreCase("y")){
 
+                updateInventory();
                 System.out.println();
             }
 

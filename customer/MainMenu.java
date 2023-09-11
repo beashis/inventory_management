@@ -9,7 +9,7 @@ public class MainMenu {
                 "Show Cart",
                 "Show Products",
                 "Show Profile",
-                "Exit App"
+                "Logout"
         };
 
         while(true) {
@@ -31,6 +31,7 @@ public class MainMenu {
                         break;
                     case 2:
                         System.out.println("Option 2 selected");
+                        ShowProducts.displayProducts();
                         break;
                     case 3:
                         System.out.println("Option 3 selected");

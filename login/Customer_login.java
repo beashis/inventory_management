@@ -6,9 +6,9 @@ import customer.*;
 
 public class Customer_login {
     public void customer_login() {
+        Scanner scn = new Scanner(System.in);
 
-
-        try(Scanner sc = new Scanner(System.in)){
+        try{
             String username;
             String password;
 
@@ -19,10 +19,10 @@ public class Customer_login {
 
             while(true){
                 System.out.println("Enter username: ");
-                username = sc.nextLine();
-
+                username = scn.nextLine();
+                //scn.next();
                 System.out.println("Enter Password: ");
-                password = sc.nextLine();
+                password = scn.nextLine();
                 if(username.equals(username)){
                     if(password.equals(password)){
                         System.out.println("Login successful");
@@ -36,8 +36,9 @@ public class Customer_login {
                 }
 
             }
-
-
+        }catch(Exception e) {
+            System.out.println(e);
         }
+        scn.close();
     }
 }

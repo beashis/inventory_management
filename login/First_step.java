@@ -3,7 +3,7 @@ package login;
 import common.*;
 
 public class First_step {
-    public static void main(String[] args) {
+    public static void main() {
         Customer_login customer_login = new Customer_login();
         Admin_login admin_login = new Admin_login();
         Register register = new Register();
@@ -17,7 +17,7 @@ public class First_step {
         while(true) {
 
             try {
-                System.out.println("Welcome to the Inventory Management System!");
+                //System.out.println("Welcome to the Inventory Management System!");
                 int input = 0;
                 input = MenuFormat.menuFormat(loginOptions);
 
@@ -45,7 +45,6 @@ public class First_step {
                 }
             }catch(Exception e){
                 System.out.println("Try again.");
-                break;
             }
         }
     }

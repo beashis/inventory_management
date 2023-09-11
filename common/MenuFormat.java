@@ -8,6 +8,7 @@ class InputOutOfBoundsException extends Exception{}
 
 public class MenuFormat {
 
+    static Scanner sc = UserVariables.scanner;
     private static void displayMenu(String [] menu){
 
 
@@ -19,7 +20,6 @@ public class MenuFormat {
 
     private static int input(String [] menu) throws Exception{
 
-        Scanner sc = new Scanner(System.in);
         System.out.print("Please enter your selection: ");
 
         int input = 0;
@@ -30,15 +30,14 @@ public class MenuFormat {
             }
         }catch(InputMismatchException e){
             System.out.println("Please enter correct form of input.");
-            sc.next();
             throw new Exception();
         }catch(InputOutOfBoundsException e){
             System.out.println("Please enter the number in a valid range.");
             //sc.next();
             throw new Exception();
         }catch (Exception e) {
+            System.out.println(e);
             System.out.println("An unexpected error happened. Please try again");
-            sc.next();
             throw new Exception();
         }
         return input;

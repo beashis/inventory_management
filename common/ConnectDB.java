@@ -27,8 +27,6 @@ public class ConnectDB {
         return rs;
     }
 
-
-
     public ResultSet getProductTable() throws SQLException {
         CallableStatement statement = conn.prepareCall("{Product_DB()}");
         return statement.executeQuery();
@@ -49,5 +47,8 @@ public class ConnectDB {
         return statement.executeQuery();
     }
 
-
+    public ResultSet updateProductInCart(int uid, int selectProduct) throws SQLException{
+        CallableStatement statement = conn.prepareCall("{updateProduct()}");
+        return statement.executeQuery();
+    }
 }

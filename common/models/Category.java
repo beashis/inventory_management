@@ -1,4 +1,4 @@
-package common.module;
+package common.models;
 
 public class Category {
     int id;

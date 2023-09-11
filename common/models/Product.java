@@ -1,4 +1,4 @@
-package common.module;
+package common.models;
 
 public class Product {
     int id;

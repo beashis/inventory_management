@@ -140,33 +140,37 @@ public class Admin_main {
                             System.out.println("Category name :" + categorySets.getString("c_name"));
                         }
 
-                        System.out.println("select category from the list");
-                        int cat_id = sc.nextInt();
-                        ResultSet productSets = dbb.getProductTable(cat_id);
-                        int j=1;
-
-                        while (productSets.next()){
-                            System.out.print(j++ +". ");
-                            System.out.print("Product id :" + productSets.getInt("p_id")+" ");
-                            System.out.print("Category id :" + productSets.getInt("c_id")+" ");
-                            System.out.print("Product name :" + productSets.getString("p_name")+" ");
-                            System.out.print("Product count :" + productSets.getInt("p_quantity")+" ");
-                            System.out.print("Product price :" + productSets.getInt("p_price")+" ");
-                            System.out.println("Product discount :" + productSets.getInt("p_discount"));
-                        }
-                        if(j==1){
-                            System.out.println("table is empty");
-                            break;
+                        if (count==1){
+                            System.out.println("No item available");
                         }else{
-                            System.out.println("Enter product id from list to Delete:");
+                            System.out.println("select category from the list");
+                            int cat_id = sc.nextInt();
+                            ResultSet productSets = dbb.getProductTable(cat_id);
+                            int j=1;
+                            while (productSets.next()){
+                                System.out.print(j++ +". ");
+                                System.out.print("Product id :" + productSets.getInt("p_id")+" ");
+                                System.out.print("Category id :" + productSets.getInt("c_id")+" ");
+                                System.out.print("Product name :" + productSets.getString("p_name")+" ");
+                                System.out.print("Product count :" + productSets.getInt("p_quantity")+" ");
+                                System.out.print("Product price :" + productSets.getInt("p_price")+" ");
+                                System.out.println("Product discount :" + productSets.getInt("p_discount"));
+                            }
+                            if(j==1){
+                                System.out.println("No item available");
+                                break;
+                            }else{
+                                System.out.println("Enter product id from list to Delete:");
+                            }
+                            int pp_id = sc.nextInt();
+                            try{
+                                dbb.deleteProduct(pp_id);
+                                System.out.println("successfully deleted");
+                            }catch (Exception e){
+                                System.out.println(e);
+                            }
                         }
-                        int pp_id = sc.nextInt();
-                        try{
-                            dbb.deleteProduct(pp_id);
-                            System.out.println("successfully deleted");
-                        }catch (Exception e){
-                            System.out.println(e);
-                        }
+
                         break;
                     case 3:
                         ConnectDB dbbb = new ConnectDB();
@@ -179,33 +183,40 @@ public class Admin_main {
                             System.out.print("Category id :" + categorySetss.getInt("c_id")+" ");
                             System.out.println("Category name :" + categorySetss.getString("c_name"));
                         }
-
-                        //System.out.println("select category from the list");
-                        int cat_idd = sc.nextInt();
-                        ResultSet productSetss = dbbb.getProductTable(cat_idd);
-                        int jj=1;
-                        while (productSetss.next()){
-                            System.out.print(jj++ +". ");
-                            System.out.print("Product id :" + productSetss.getInt("p_id")+" ");
-                            System.out.print("Category id :" + productSetss.getInt("c_id")+" ");
-                            System.out.print("Product name :" + productSetss.getString("p_name")+" ");
-                            System.out.print("Product count :" + productSetss.getInt("p_quantity")+" ");
-                            System.out.print("Product price :" + productSetss.getInt("p_price")+" ");
-                            System.out.println("Product discount :" + productSetss.getInt("p_discount"));
-                        }
-                        while(true) {
-                            System.out.println("Press 0 to go back");
-                            try {
-                                int input1 = sc.nextInt();
-                                if (input1==0)
-                                    break;
-                                else {
-                                    throw new Exception();
+                        if (countt==1){
+                            System.out.println("No item available");
+                        }else{
+                            System.out.println("select category from the list");
+                            int cat_idd = sc.nextInt();
+                            ResultSet productSetss = dbbb.getProductTable(cat_idd);
+                            int jj=1;
+                            while (productSetss.next()){
+                                System.out.print(jj++ +". ");
+                                System.out.print("Product id :" + productSetss.getInt("p_id")+" ");
+                                System.out.print("Category id :" + productSetss.getInt("c_id")+" ");
+                                System.out.print("Product name :" + productSetss.getString("p_name")+" ");
+                                System.out.print("Product count :" + productSetss.getInt("p_quantity")+" ");
+                                System.out.print("Product price :" + productSetss.getInt("p_price")+" ");
+                                System.out.println("Product discount :" + productSetss.getInt("p_discount"));
+                            }
+                            if(jj==1){
+                                System.out.println("No item available");
+                            }
+                            while(true) {
+                                System.out.println("Press 0 to go back");
+                                try {
+                                    int input1 = sc.nextInt();
+                                    if (input1==0)
+                                        break;
+                                    else {
+                                        throw new Exception();
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Wrong input");
                                 }
-                            } catch (Exception e) {
-                                System.out.println("Wrong input");
                             }
                         }
+
 
                     default:
                         System.out.println("Please select a valid option.");

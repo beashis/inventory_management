@@ -8,4 +8,7 @@ public class UserVariables {
     public static int getUid(){
       return uid;
     }
+    public static void setUid(int uid1){
+        uid = uid1;
+    }
 }

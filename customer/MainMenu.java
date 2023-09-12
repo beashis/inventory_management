@@ -7,8 +7,7 @@ public class MainMenu {
 
         String [] menuOptions = {
                 "Show Cart",
-                "Show Products",
-                "Show Profile",
+                "Add Products",
                 "Logout"
         };
 
@@ -19,7 +18,7 @@ public class MainMenu {
                 int input = 0;
                 input = MenuFormat.menuFormat(menuOptions);
 
-                if (input == 4) {
+                if (input == 3) {
                     break;
                 }
 

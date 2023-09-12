@@ -16,10 +16,11 @@ public class Inventory_management_root {
 //
         ConnectDB db = new ConnectDB();
         db.connectToDB();
-        Admin_main admin = new Admin_main();
-        admin.displayAdminMenu();
+//        Admin_main admin = new Admin_main();
+//        admin.displayAdminMenu();
 
-//        login.First_step.main();
+
+        login.First_step.main();
     }
 
 }

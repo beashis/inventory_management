@@ -12,7 +12,7 @@ public class Admin_main {
 
     Scanner sc = UserVariables.scanner;
     public void displayAdminMenu(){
-        String[] adminOptions = {"createProduct" , "deleteProduct", "logout"};
+        String[] adminOptions = {"Add Inventory" , "Delete Product", "Show Products","Logout"};
         Scanner sc = new Scanner(System.in);
         while(true) {
 
@@ -21,6 +21,7 @@ public class Admin_main {
                 input = MenuFormat.menuFormat(adminOptions);
 
                 if (input == 4) {
+                    System.out.println("Logout Successful.");
                     break;
                 }
 
@@ -75,8 +76,6 @@ public class Admin_main {
                              */
                             //
                         ResultSet productSet = db.getProductTable(selectCategory);
-
-                            System.out.println("select product from the list");
                             int j=1;
                             while (productSet.next()){
                                 System.out.print(j++ +". ");
@@ -91,7 +90,7 @@ public class Admin_main {
 
                         System.out.println();
                         System.out.println("Enter 0 to add new product");
-                        System.out.println("Enter u update quantity of the product");
+//                        System.out.println("Enter u update quantity of the product");
 
 
                         String selectProduct = sc.next();
@@ -117,7 +116,9 @@ public class Admin_main {
                             int p_id = sc.nextInt();
                             System.out.println("Enter quantity for the product: ");
                             int count = sc.nextInt();
-                            db.updateProduct(count , p_id , c_id);
+                            System.out.println(count+" "+p_id+" "+c_id);
+                            boolean flagg = db.updateProduct(count , p_id , c_id);
+                            System.out.println(flagg);
                          }
                         }
 
@@ -128,8 +129,84 @@ public class Admin_main {
                     case 2:
 
                         // TODO: 09-Sep-23 get validation from dp and print accordingly.
-//                        addProduct(pId , pCount);
+                       ConnectDB dbb = new ConnectDB();
+                       dbb.connectToDB();
+                       Statement statement = dbb.conn.createStatement();
+                       ResultSet categorySets = dbb.getCategory(statement);
+                        int count=1;
+                        while (categorySets.next()){
+                            System.out.print(count++ +". ");
+                            System.out.print("Category id :" + categorySets.getInt("c_id")+" ");
+                            System.out.println("Category name :" + categorySets.getString("c_name"));
+                        }
+
+                        System.out.println("select category from the list");
+                        int cat_id = sc.nextInt();
+                        ResultSet productSets = dbb.getProductTable(cat_id);
+                        int j=1;
+
+                        while (productSets.next()){
+                            System.out.print(j++ +". ");
+                            System.out.print("Product id :" + productSets.getInt("p_id")+" ");
+                            System.out.print("Category id :" + productSets.getInt("c_id")+" ");
+                            System.out.print("Product name :" + productSets.getString("p_name")+" ");
+                            System.out.print("Product count :" + productSets.getInt("p_quantity")+" ");
+                            System.out.print("Product price :" + productSets.getInt("p_price")+" ");
+                            System.out.println("Product discount :" + productSets.getInt("p_discount"));
+                        }
+                        if(j==1){
+                            System.out.println("table is empty");
+                            break;
+                        }else{
+                            System.out.println("Enter product id from list to Delete:");
+                        }
+                        int pp_id = sc.nextInt();
+                        try{
+                            dbb.deleteProduct(pp_id);
+                            System.out.println("successfully deleted");
+                        }catch (Exception e){
+                            System.out.println(e);
+                        }
                         break;
+                    case 3:
+                        ConnectDB dbbb = new ConnectDB();
+                        dbbb.connectToDB();
+                        Statement statementss = dbbb.conn.createStatement();
+                        ResultSet categorySetss = dbbb.getCategory(statementss);
+                        int countt=1;
+                        while (categorySetss.next()){
+                            System.out.print(countt++ +". ");
+                            System.out.print("Category id :" + categorySetss.getInt("c_id")+" ");
+                            System.out.println("Category name :" + categorySetss.getString("c_name"));
+                        }
+
+                        //System.out.println("select category from the list");
+                        int cat_idd = sc.nextInt();
+                        ResultSet productSetss = dbbb.getProductTable(cat_idd);
+                        int jj=1;
+                        while (productSetss.next()){
+                            System.out.print(jj++ +". ");
+                            System.out.print("Product id :" + productSetss.getInt("p_id")+" ");
+                            System.out.print("Category id :" + productSetss.getInt("c_id")+" ");
+                            System.out.print("Product name :" + productSetss.getString("p_name")+" ");
+                            System.out.print("Product count :" + productSetss.getInt("p_quantity")+" ");
+                            System.out.print("Product price :" + productSetss.getInt("p_price")+" ");
+                            System.out.println("Product discount :" + productSetss.getInt("p_discount"));
+                        }
+                        while(true) {
+                            System.out.println("Press 0 to go back");
+                            try {
+                                int input1 = sc.nextInt();
+                                if (input1==0)
+                                    break;
+                                else {
+                                    throw new Exception();
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Wrong input");
+                            }
+                        }
+
                     default:
                         System.out.println("Please select a valid option.");
                         break;

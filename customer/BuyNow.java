@@ -31,15 +31,16 @@ public class BuyNow {
     public static void showMenu(){
 
         try {
-            displayData();
-            List<List<String>> arr = checkOrder();
-            if(!arr.isEmpty()){
-                System.out.println("Following items in order are not available in Inventory. Please reduce the count or remove the product.");
-                for(List<String> i: arr){
-                    System.out.println(i.get(0) + ": " + i.get(1));
-                }
-                return;
-            }
+//            displayData();
+//            List<List<String>> arr = checkOrder();
+//            if(!arr.isEmpty()){
+//                System.out.println("Following items in order are not available in Inventory. Please reduce the count or remove the product.");
+//                for(List<String> i: arr){
+//                    System.out.println(i.get(0) + ": " + i.get(1));
+//                }
+//                return;
+//            }
+
 
             System.out.println("Confirm order(y/n)?");
             Scanner sc = new Scanner(System.in);
@@ -47,8 +48,11 @@ public class BuyNow {
 
             if(input.equalsIgnoreCase("y")){
 
-                updateInventory();
-                System.out.println();
+                //updateInventory();
+                ConnectDB db = new ConnectDB();
+                db.connectToDB();
+                db.emptyCart(uid);
+                System.out.println("Order placed successfully.");
             }
 
         }catch(Exception e){

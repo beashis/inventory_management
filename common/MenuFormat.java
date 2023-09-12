@@ -8,7 +8,6 @@ class InputOutOfBoundsException extends Exception{}
 
 public class MenuFormat {
 
-    static Scanner sc = UserVariables.scanner;
     private static void displayMenu(String [] menu){
 
 
@@ -21,7 +20,7 @@ public class MenuFormat {
     private static int input(String [] menu) throws Exception{
 
         System.out.print("Please enter your selection: ");
-
+        Scanner sc = new Scanner(System.in);
         int input = 0;
         try{
             input = sc.nextInt();

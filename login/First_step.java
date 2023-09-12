@@ -8,9 +8,9 @@ public class First_step {
         Admin_login admin_login = new Admin_login();
         Register register = new Register();
         String [] loginOptions = {
-                "Login",
+                "User Login",
                 "Admin Login",
-                "SignUp",
+                "User SignUp",
                 "Exit App"
         };
 
@@ -37,7 +37,7 @@ public class First_step {
                         break;
                     case 3:
                         System.out.println("Option 3 selected");
-                        register.Register();
+                        register.register();
                         break;
                     default:
                         System.out.println("Please select a valid option.");

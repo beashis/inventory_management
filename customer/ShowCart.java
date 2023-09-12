@@ -13,10 +13,23 @@ public class ShowCart {
     static int uid = UserVariables.getUid();
     static List<Product> prodList = new ArrayList<Product>();
 
-    public static void displayCart() throws SQLException {
-            ResultSet rs = ConnectDB.queryExecute("p_show_cart(" + uid + ")");
+    public static void displayCart() throws SQLException, ClassNotFoundException {
+        ConnectDB db = new ConnectDB();
+        db.connectToDB();
+        ResultSet rs = db.displayCartQuery(uid);
 
-            //TODO: display cart in a table and update prodList
+        int totalAmount = 0;
+        while(rs.next()){
+            System.out.print("Name: " + rs.getString("p_name") + " ");
+            System.out.print("Price: " + rs.getInt("p_price") + " ");
+            System.out.print("Quantity: " + rs.getInt("quantity") + " ");
+            System.out.print("Discount %: " + rs.getInt("p_discount") + " ");
+            int temp = rs.getInt("final_price");
+            totalAmount+=temp;
+            System.out.println("Final price: " + temp);
+        }
+
+        System.out.println("Total Amount: " + totalAmount);
     }
 
     public static void removeItems() throws SQLException{
@@ -58,7 +71,6 @@ public class ShowCart {
 
         String [] menuOptions = {
                 "Buy Now",
-                "Remove items",
                 "Prev Menu"
         };
 
@@ -71,7 +83,7 @@ public class ShowCart {
                 int input = 0;
                 input = MenuFormat.menuFormat(menuOptions);
 
-                if (input == 3) {
+                if (input == 2) {
                     break;
                 }
 
@@ -80,10 +92,6 @@ public class ShowCart {
                     case 1:
                         System.out.println("Option 1 selected");
                         BuyNow.showMenu();
-                        break;
-                    case 2:
-                        System.out.println("Option 2 selected");
-                        removeItems();
                         break;
                     default:
                         System.out.println("Please select a valid option.");
